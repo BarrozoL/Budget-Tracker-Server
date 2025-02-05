@@ -17,6 +17,12 @@ const MonthSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  Expenses: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Expense",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Month", MonthSchema);

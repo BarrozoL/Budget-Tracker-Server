@@ -11,7 +11,7 @@ router.get("/months", async (req, res, next) => {
   }
 });
 
-router.get("/month/:monthName", async (req, res, next) => {
+router.get("/months/:monthName", async (req, res, next) => {
   const { monthName } = req.params;
   try {
     const month = await Month.findOne({ name: monthName });
