@@ -10,6 +10,8 @@ const indexRoutes = require("../routes/index.routes");
 const userRoutes = require("../routes/user.routes");
 const protectedRoutes = require("../routes/protected.routes");
 
+const monthRoutes = require("../routes/month.routes");
+
 module.exports = (app) => {
   app.set("trust proxy", 1);
   app.use(
@@ -24,6 +26,8 @@ module.exports = (app) => {
 
   //Routes
   app.use("/", indexRoutes);
+
+  app.use("/", monthRoutes);
 
   app.use("/auth", userRoutes);
 
