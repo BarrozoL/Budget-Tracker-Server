@@ -27,16 +27,37 @@ router.get("/months/:monthName", async (req, res, next) => {
 });
 
 router.post("/month", async (req, res, next) => {
-  const { name, monthlyBudget, ammountSpent, remainingBudget } = req.body;
+  const { name, monthlyBudget, amountSpent, remainingBudget } = req.body;
 
   try {
     const newMonth = await Month.create({
       name,
       monthlyBudget,
-      ammountSpent,
+      amountSpent,
       remainingBudget,
     });
     res.status(201).json(newMonth);
+  } catch (err) {
+    res.status(500).json({ message: "Internal server error" });
+    next(err);
+  }
+});
+
+router.put("/month/:monthName", async (req, res, next) => {
+  const { monthName } = req.params;
+  const { monthlyBudget, remainingBudget, amountSpent } = req.body;
+
+  try {
+    const editedMonth = await Month.findOneAndUpdate(
+      { name: monthName },
+      { monthlyBudget, remainingBudget, amountSpent },
+      { new: true }
+    );
+    if (!editedMonth) {
+      res.status(404).json({ message: "Month not found" });
+      return;
+    }
+    res.status(200).json(editedMonth);
   } catch (err) {
     res.status(500).json({ message: "Internal server error" });
     next(err);

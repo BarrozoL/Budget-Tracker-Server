@@ -9,7 +9,7 @@ const MonthSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  ammountSpent: {
+  amountSpent: {
     type: Number,
     required: true,
   },

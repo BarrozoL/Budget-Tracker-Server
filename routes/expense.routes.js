@@ -11,12 +11,12 @@ router.get("/expenses", async (req, res, next) => {
 });
 
 router.post("/expense", async (req, res, next) => {
-  const { name, ammount, date, category } = req.body;
+  const { name, amount, date, category } = req.body;
 
   try {
     const newExpense = Expense.create({
       name,
-      ammount,
+      amount,
       date,
       category,
     });

@@ -5,7 +5,7 @@ const ExpenseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  ammount: {
+  amount: {
     type: Number,
     required: true,
   },
